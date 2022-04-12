@@ -233,14 +233,10 @@ class PSPNet(nn.Module):
 
 
 
-if __name__ == "__main__":
-    # x = torch.randn(1, 3, 475, 475)
-    # feature_conv = FeatureMap_convolution()
-    # outputs = feature_conv(x)
-    # print(outputs.shape) #torch.Size([1, 128, 119, 119])
+# if __name__ == "__main__":
 
-    dummy_img = torch.rand(2, 3, 128, 256)
-    net = PSPNet(21)
-    # print(net)
-    outputs = net(dummy_img)
-    print(outputs[0].shape)
+#     dummy_img = torch.rand(2, 3, 128, 256)
+#     net = PSPNet(21)
+#     # print(net)
+#     outputs = net(dummy_img)
+#     print(outputs[0].shape)

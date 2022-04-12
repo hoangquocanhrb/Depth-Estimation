@@ -26,12 +26,12 @@ class CityScapes(Dataset):
     def __len__(self):
         return len(os.listdir(self.datapath + '/image'))
 
-if __name__ == "__main__":
-    root = '../Dataset/CityScapeDepthDataset/'
-    color_mean = (0.485, 0.456, 0.406)
-    color_std = (0.229, 0.224, 0.225)
-    train_data = CityScapes(root)
-    val_data = CityScapes(root, phase='val')
+# if __name__ == "__main__":
+#     root = '../Dataset/CityScapeDepthDataset/'
+#     color_mean = (0.485, 0.456, 0.406)
+#     color_std = (0.229, 0.224, 0.225)
+#     train_data = CityScapes(root)
+#     val_data = CityScapes(root, phase='val')
     
 
     
