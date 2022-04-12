@@ -114,7 +114,7 @@ def train_model(model, dataloader, criterion, scheduler, optimizer, num_epochs):
             min_loss = epoch_val_loss
             torch.save(model.state_dict(), 'Weights/pspnet50.pth')
 
-if __name__ == 'main':
+if __name__ == '__main__':
     root_path = '../Dataset/CityScapeDepthDataset/'
     train_dataset = CityScapes(root_path, phase='train')
     val_dataset = CityScapes(root_path, phase='val')
