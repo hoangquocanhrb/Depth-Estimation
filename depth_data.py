@@ -21,7 +21,7 @@ class CityScapes(Dataset):
         depth = torch.from_numpy(np.moveaxis(depth, -1, 0)) #(1,128,256)
         image = torch.from_numpy(np.moveaxis(image, -1, 0)) #(3,128,256)
         
-        return image, depth
+        return image.float(), depth.float()
 
     def __len__(self):
         return len(os.listdir(self.datapath + '/image'))
