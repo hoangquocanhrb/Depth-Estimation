@@ -18,8 +18,10 @@ $ cd Depth-Estimation
 
 $ python3 train.py --aux_weight=0.4 --batch_size=32 --num_epochs=1000
 
+$ python3 predict.py --index=1
+
 # Results
 
-<img src="Images/Figure_1.png">
-
+<img src="Images/Figure_3.png">
 <img src="Images/Figure_2.png">
+<img src="Images/Figure_1.png">
