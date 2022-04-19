@@ -102,8 +102,8 @@ def train_model(model, dataloader, criterion, scheduler, optimizer, num_epochs):
                     else:
                         epoch_val_loss += loss.item()
 
-            # if phase == 'train':
-            #   scheduler.step()
+            if phase == 'train':
+              scheduler.step()
         
         t_epoch_end = time.time()
         duration = t_epoch_end - t_epoch_start
@@ -116,31 +116,17 @@ def train_model(model, dataloader, criterion, scheduler, optimizer, num_epochs):
         elif epoch_val_loss < min_loss and min_loss != 0:
             min_loss = epoch_val_loss
             print('Saved model')
-            torch.save(model.state_dict(), 'Weights/pspnet50_new_1.pth')
+            # torch.save(model.state_dict(), 'Weights/pspnet50_new_1.pth')
 
 if __name__ == '__main__':
     parser = args_input().parse_args()
 
-    # color_mean = (0.485, 0.456, 0.406)
-    # color_std = (0.229, 0.224, 0.225)
-
-    # data_transform = {
-    #   'train': transforms.Compose([
-    #     transforms.ToTensor(),
-    #     transforms.Normalize(color_mean, color_std)
-    #   ]),
-    #   'val': transforms.Compose([
-    #     transforms.ToTensor(),
-    #     transforms.Normalize(color_mean, color_std)
-    #   ]),
-    # }
 
     root_path = 'CityScapeDepthDataset'
     train_dataset = CityScapes(root_path, phase='train')
     val_dataset = CityScapes(root_path, phase='val')
 
     model = PSPNet(n_classes=1)
-    # model.load_state_dict(torch.load('Weights/pspnet50_5.pth'))
 
     criterion = PSPLoss(aux_weight=parser.aux_weight)
 
