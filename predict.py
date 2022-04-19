@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 
 parser = argparse.ArgumentParser(description="Choose index of val images")
 parser.add_argument('--index', type=int, nargs='?', default=1, help='0-499')
+parser = parser.parse_args()
 
 root_path = '../Dataset/CityScapeDepthDataset/'
 val_data = CityScapes(root_path, phase='val')
