@@ -1,3 +1,5 @@
+import argparse
+
 from model import PSPNet
 import torch
 import torch.nn as nn 
@@ -5,10 +7,13 @@ import numpy as np
 from depth_data import CityScapes
 import matplotlib.pyplot as plt
 
+parser = argparse.ArgumentParser(description="Choose index of val images")
+parser.add_argument('--index', type=int, nargs='?', default=1, help='0-499')
+
 root_path = '../Dataset/CityScapeDepthDataset/'
 val_data = CityScapes(root_path, phase='val')
 
-index = 3
+index = parser.index
 image, depth = val_data.__getitem__(index)
 
 model = PSPNet(n_classes=1)
