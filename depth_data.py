@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 class CityScapes(Dataset):
     def __init__(self, root, phase='train'):
         self.root = root 
-        self.phase = phase 
+        self.phase = phase
 
         if self.phase=='train':
             self.datapath = self.root + '/train'
@@ -18,20 +18,26 @@ class CityScapes(Dataset):
         image = np.load(self.datapath + '/image/' + str(index) + '.npy')
         depth = np.load(self.datapath + '/depth/' + str(index) + '.npy')
 
+        image = np.moveaxis(image, -1, 0)
+        depth = depth*255
+        image[0] *= 255
+        image[1] *= 255
+        image[2] *= 255
+
         depth = torch.from_numpy(np.moveaxis(depth, -1, 0)) #(1,128,256)
-        image = torch.from_numpy(np.moveaxis(image, -1, 0)) #(3,128,256)
+        image = torch.from_numpy(image) #(3,128,256)
         
         return image.float(), depth.float()
 
     def __len__(self):
         return len(os.listdir(self.datapath + '/image'))
 
-# if __name__ == "__main__":
-#     root = '../Dataset/CityScapeDepthDataset/'
-#     color_mean = (0.485, 0.456, 0.406)
-#     color_std = (0.229, 0.224, 0.225)
-#     train_data = CityScapes(root)
-#     val_data = CityScapes(root, phase='val')
+if __name__ == "__main__":
+    root = 'CityScapeDepthDataset'
+    
+    train_data = CityScapes(root, phase='train')
+    print(train_data.__len__())
+    a, b = train_data.__getitem__(2975)
     
 
     
